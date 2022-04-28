@@ -16,8 +16,8 @@ while True:
     
     client_connection, client_address = server_socket.accept()
     request = client_connection.recv(1024).decode()
-    print(request.split())
-    # Send HTTP response
+    print(request, client_address)
+    
     response = 'HTTP/1.0 200 OK\n\n <h1> Me arruma um trampo ai professor de verdade mesmo </h1>'
     client_connection.sendall(response.encode())
     client_connection.close()
