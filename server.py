@@ -1,5 +1,6 @@
 from http import server
 from http.server import HTTPServer, BaseHTTPRequestHandler
+import http.client
 
 ip = "127.0.0.1"
 porta = 8000
@@ -10,7 +11,7 @@ class Http(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.end_headers()
 
-        self.wfile.write(bytes("<html><body><h1>Me arruma um estágio professor</h1></body></html>"))
+        self.wfile.write(bytes("<html> <head> <title> Servidor Http </title> </head> <body> <h1> Me arruma um estágio professor </h1> </body> </html>"))
 
 
 server = HTTPServer((ip, porta), Http)
