@@ -1,30 +1,25 @@
-from http import client
-from logging.config import listen
 import socket
 
-from requests import request
 
-ip = ''
+ip = '127.0.0.1'
 porta = 8000
 
-listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-listen_socket.bind((ip, porta))
-listen_socket.listen(1)
 
-print('servidor http esta rodando em %s' % porta)
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+server_socket.bind((ip, porta))
+server_socket.listen(1)
 
-while True:
-    client_connection, client_adress - listen_socket.accept()
-    request - client_connection.recv(1024)
-    print (request.decode('utf-8'))
-    http_response = """"
-HTTP/1.1 200 OK
+print('Servidor aberto na porta %s ...' % porta)
 
-Hello, World!
-"""
-
-    client_connection.send(http_response.encode('utf-8'))
+while True:    
+    
+    client_connection, client_address = server_socket.accept()
+    request = client_connection.recv(1024).decode()
+    print(request.split())
+    # Send HTTP response
+    response = 'HTTP/1.0 200 OK\n\n <h1> Me arruma um trampo ai professor de verdade mesmo </h1>'
+    client_connection.sendall(response.encode())
     client_connection.close()
 
-listen_socket.close()    
+server_socket.close()
