@@ -4,9 +4,9 @@ import time
 from paho.mqtt import client as mqtt_client
 
 
-broker = 'broker.emqx.io'
+broker = 'test.mosquitto.org'
 port = 1883
-topic = "python/mqtt"
+topic = "mqtt-unimar/test"
 
 client_id = f'python-mqtt-{"testando"}'
 
